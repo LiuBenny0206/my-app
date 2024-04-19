@@ -29,7 +29,14 @@ module.exports = {
             transform: 'translateY(0)'
           }
         }
-      }
+      },
+      backgroundColor: {
+        'black-60': 'rgba(0, 0, 0, 0.6)'
+      },
+      margin: {
+        '10p': '10%',  // 为水平和垂直边距添加 10% 的类
+      },
+
     },
   },
   plugins: [],

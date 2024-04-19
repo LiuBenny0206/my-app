@@ -3,14 +3,23 @@ import Post from "./Post";
 import "../index.css"
 import PostList from "./PostList";
 import NewPost from "./NewPost";
+import MainHeader from "./MainHeader";
 
 
 function App() {
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleModal = ()=>{
+        setOpenModal(openModal => !openModal);
+    }
+
     return (
+    <>
+        <MainHeader onCreatePost={handleModal}/>
         <main>
-            <NewPost />
-            <PostList />
+            <PostList openModal={openModal} setOpenModal={handleModal}/>
         </main>
+    </>    
     );
 }
 
