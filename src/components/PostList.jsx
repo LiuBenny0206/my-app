@@ -23,8 +23,9 @@ function PostList({openModal, setOpenModal}){
             <Modal onClose={setOpenModal}>
                 <NewPost 
                     setAuthor={handleAuthor} 
-                    setBody={handleBody
-                }/>
+                    setBody={handleBody}
+                    onClose={setOpenModal}
+                />
             </Modal>
             )
             }
