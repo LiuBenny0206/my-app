@@ -5,34 +5,38 @@ import Modal from "./Modal";
 
 
 function PostList({openModal, setOpenModal}){
-    const [author, setAuthor] = useState("");
-    const [body, setBody] = useState("");
+    const [posts, setPosts] = useState([]);
 
-    const handleBody = (e) => {
-        setBody(e.target.value)
-      }
-
-      const handleAuthor = (e) => {
-        setAuthor(e.target.value)
-      }
+    const addPostHandler = (postData) => {
+        setPosts((exsitingPostDatas) => [postData, ...exsitingPostDatas]);
+    }
     
-
     return(
         <>
         {openModal &&  (
             <Modal onClose={setOpenModal}>
                 <NewPost 
-                    setAuthor={handleAuthor} 
-                    setBody={handleBody}
                     onClose={setOpenModal}
+                    onAddPost={addPostHandler}
                 />
             </Modal>
             )
-            }
-        
+        }
+
+        {posts.length >= 1 && 
         <ul className="list-none max-w-3xl my-4 mx-auto py-4 grid gap-4 grid-cols-3	justify-center">
-            <Post author={author} body={body}/>
+            {posts.map((post, index)  => <Post key={index} author={post.author} body={post.body}/>)}
         </ul>
+        }
+
+        {posts.length === 0 && 
+            <div className="text-white align-center text-3xl mt-6">
+                <h1>There is no post yet</h1>
+            </div>
+        }
+
+
+        
         </>
     );
 }
